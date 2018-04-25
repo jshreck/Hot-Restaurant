@@ -65,7 +65,7 @@
     <script>
     function runTableQuery() {
         $.ajax({
-            '/api/reservations',
+            url: '/api/reservations',
             method: 'GET'
         }).done(function(tableData) {
             console.log(tableData);
