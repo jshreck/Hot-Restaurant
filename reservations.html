@@ -51,7 +51,7 @@
                 <label for>Display Name</label>
                 <input type="text" class="form-control" id="reserve_id" placeholder="Enter Display Name">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary submit">Submit</button>
         </form>
     </div>
     <a href="#">API Table Link</a> |
@@ -62,7 +62,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script>
-    $(.submit).on('click', () => {
+    $('.submit').on('click', () => {
         var newReservation = {
             customerName: $('#reserve_name').val().trim(),
             phoneNumber: $('#reserve_phone').val().trim(),
@@ -70,7 +70,7 @@
             customerID: $('#reserve_id').val().trim()
         };
 
-        $.post('/api/tables', (newReservation) => {
+        $.post('/api/reservations', (newReservation) => {
             $('#reserve_name').val('');
             $('#reserve_phone').val('');
             $('#reserve_email').val('');

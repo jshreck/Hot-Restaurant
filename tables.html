@@ -48,7 +48,7 @@
                     <div class="panel-heading text-left">
                         <h4 class="panel-title">Waiting List</h4>
                     </div>
-                    <div class="panel-body" id="tableSection"></div>
+                    <div class="panel-body" id="waitingListSection"></div>
                 </div>
             </div>
         </form>
@@ -61,6 +61,26 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script>
+    function runTableQuery() {
+        $.ajax('/api/reservations', method: 'GET').done(function(tableData) {
+            console.log(tableData);
+
+            for (var i = 0; i < tableData.length; i++) {
+
+                var tableSection = $('<div>');
+
+                tableSection.addClass('well');
+                tableSection.attr('id', 'tableWell-' + i + 1)
+                $('#tableSection').append(tableSection);
+
+                var tableNumber = i + 1;
+
+                $('#tableWell-' + i + 1).append('<h2><span class="label label-primary">' + tableNumber + '<span> | ' + tableData[i].customerID + '</h2>');
+            }
+        });
+    }
+    </script>
 </body>
 
 </html>
