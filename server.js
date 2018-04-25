@@ -21,31 +21,13 @@ app.use(bodyParser.json());
 
 var reservations = [];
 var waitlist = [];
-var tables = [
-    {
-        id: 1,
-        seated: 'Joe'
-    }, 
-    {
-        id: 2,
-        seated: 'Suzy'
-    },
-    {
-        id: 3,
-        seated: 'Sally'
-    },
-    {
-        id: 4,
-        seated: 'Greg'
-    }, 
-    {
-        id: 5,
-        seated: 'Jim'
-    }
-];
 
 app.get("/api/reservations", function (req, res) {
     return res.send(JSON.stringify(reservations));
+});
+
+app.get("/api/waitlist", function (req, res) {
+    return res.send(JSON.stringify(waitlist));
 });
 
 app.post("/api/reservations", function (req,res) {
