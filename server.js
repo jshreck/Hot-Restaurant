@@ -1,5 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var fs = require("fs");
+var path = require("path");
 
 // Sets up the Express App
 // =============================================================
@@ -49,18 +51,6 @@ app.get("/api/reservations", function (req, res) {
 app.post("/api/reservations", function (req,res) {
     var reservation = req.body;
     
-    //count = 0;
-    // reservations.forEach(reservation, function () {
-    //     if (count < 5) {
-    //         //seat at tables
-    //     count++;
-    //     }
-
-    //     else {
-    //         //put on waitlist
-    //     }
-    // });
-    
     if (reservations.length >= 4) {
         waitlist.push(reservation);
     }
@@ -69,3 +59,15 @@ app.post("/api/reservations", function (req,res) {
     }
 });
 
+
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+  });
+
+  app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+  });
+
+  app.get("/reservations", function(req, res) {
+    res.sendFile(path.join(__dirname, "reservations.html"));
+  });
