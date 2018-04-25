@@ -69,7 +69,9 @@ app.get("/", function(req, res) {
   });
 
   app.get("/reservations", function(req, res) {
+    console.log(path.join(__dirname, "reservations.html"));
     res.sendFile(path.join(__dirname, "reservations.html"));
+    
   });
 
   app.listen(PORT, function() {

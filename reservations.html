@@ -70,7 +70,7 @@
             customerID: $('#reserve_id').val().trim()
         };
 
-        $.post(url: '/api/reservations', (newReservation) => {
+        $.post('/api/reservations', (newReservation) => {
             $('#reserve_name').val('');
             $('#reserve_phone').val('');
             $('#reserve_email').val('');
