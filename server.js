@@ -54,6 +54,7 @@ app.post("/api/reservations", function (req,res) {
     if (reservations.length >= 4) {
         waitlist.push(reservation);
     }
+    ///need something to push the res to tables
     else {
         reservations.push(reservation)
     }
