@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tables</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1 class="display-4">Hot Restaurant</h1>
+            <p class="lead">Tables/Waitlist</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+                <a class="btn btn-primary btn-lg" href="/reserve" role="button">Make a Reservation</a>
+            </p>
+        </div>
+
+        <ol class="list-group list-group-flush">
+            <li class="list-group-item">AVAILABLE</li>
+            <li class="list-group-item">AVAILABLE</li>
+            <li class="list-group-item">AVAILABLE</li>
+            <li class="list-group-item">AVAILABLE</li>
+            <li class="list-group-item">AVAILABLE</li>
+        </ol>
+
+        <footer>
+            <div class="container">
+                <a href="#">Link 1</a> |
+                <a href="#">Link 2</a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    //grab data from api route and display it on the page
+
+    function getTables() {
+        //grabs to current location (rather than hardcoding it)
+        var currentURL = window.location.origin
+
+        //ajax call -> query url with user selection (getting data from our api)
+        $.ajax({ url: currentURL + "/api/tables", method: "GET" })
+            .then((tableData) => {
+                tableData.forEach((table) => {
+                    console.log(table.id);
+                    $("ol li").each(() => {
+                        if ($(this).html() === "AVAILABLE") {
+                            $(this).html("hi");
+                        }
+                    });
+                });
+            });
+    }
+
+    getTables();
+
+</script>
+
+</html>
