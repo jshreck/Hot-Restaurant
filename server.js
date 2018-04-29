@@ -16,41 +16,6 @@ app.use(bodyParser.json());
 require("./routing/api-routes.js")(app);
 require("./routing/html-routes.js")(app);
 
-
-// var reservations = [];
-// var waitlist = [];
-
-
-// if (reservations.length >= 4) {
-//     waitlist.push(reservation);
-// }
-
-// else {
-//     reservations.push(reservation)
-// }
-
-
-// app.get("/api/reservations", function (req, res) {
-//     return res.send(JSON.stringify(reservations));
-// });
-
-// app.get("/api/waitlist", function (req, res) {
-//     return res.send(JSON.stringify(waitlist));
-// });
-
-// app.post("/api/reservations", function (req,res) {
-//     var reservation = req.body;
-    
-//     if (reservations.length >= 4) {
-//         waitlist.push(reservation);
-//     }
-//     ///need something to push the res to tables
-//     else {
-//         reservations.push(reservation)
-//     }
-// });
-
-
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

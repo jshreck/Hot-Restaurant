@@ -8,6 +8,7 @@
     <title>Reserve</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -22,14 +23,55 @@
             </p>
         </div>
 
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Phone number</label>
+                <input type="tel" class="form-control" id="phone" placeholder="(555) 555-5555">
+            </div>
+            <div class="form-group">
+                <label for="id">Unique ID</label>
+                <input type="text" class="form-control" id="id" placeholder="FirstnameLastnameFave#">
+            </div>
+            <button class="submit btn btn-primary" type="submit">Submit</button>
+        </form>
+
+        <br>
+        
         <footer>
             <div class="container">
-                <a href="#">Link 1</a> |
-                <a href="#">Link 2</a>
+                <a href="https://github.com/jshreck/Hot-Restaurant">Complain to the Manager</a>
             </div>
         </footer>
 
     </div>
 </body>
+
+<script type="text/javascript">
+
+    $(".submit").on("click", () => {
+        var newRes = {
+            name: $("#name").val().trim(),
+            email: $("#email").val().trim(),
+            phone: $("#phone").val().trim(),
+            id: $("#id").val().trim()
+        };
+
+        var currentURL = window.location.origin;
+        $.post(currentURL + "/api/tables", newRes, (gotRes) => {
+            gotRes ? alert("Your reservation has been made.") : alert("You have been added to the waitlist.");
+        });
+       
+        location.reload();
+    });
+
+</script>
 
 </html>

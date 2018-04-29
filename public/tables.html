@@ -23,18 +23,43 @@
             </p>
         </div>
 
-        <ol class="list-group list-group-flush">
-            <li class="list-group-item">AVAILABLE</li>
-            <li class="list-group-item">AVAILABLE</li>
-            <li class="list-group-item">AVAILABLE</li>
-            <li class="list-group-item">AVAILABLE</li>
-            <li class="list-group-item">AVAILABLE</li>
-        </ol>
+        <div class="card" style="width: 100%;">
+            <div class="card-header">
+                Reserved
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Table 1:
+                    <span class="reserved">AVAILABLE</span>
+                </li>
+                <li class="list-group-item">Table 2:
+                    <span class="reserved">AVAILABLE</span>
+                </li>
+                <li class="list-group-item">Table 3:
+                    <span class="reserved">AVAILABLE</span>
+                </li>
+                <li class="list-group-item">Table 4:
+                    <span class="reserved">AVAILABLE</span>
+                </li>
+                <li class="list-group-item">Table 5:
+                    <span class="reserved">AVAILABLE</span>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div class="card" style="width: 100%;">
+            <div class="card-header">
+                Waitlist
+            </div>
+            <ul class="waitlist list-group list-group-flush">
+                <!-- WAITING GO HERE -->
+            </ul>
+        </div>
 
+        <br>
+        
         <footer>
             <div class="container">
-                <a href="#">Link 1</a> |
-                <a href="#">Link 2</a>
+                <a href="https://github.com/jshreck/Hot-Restaurant">Complain to the Manager</a>
             </div>
         </footer>
 
@@ -52,17 +77,34 @@
         $.ajax({ url: currentURL + "/api/tables", method: "GET" })
             .then((tableData) => {
                 tableData.forEach((table) => {
-                    console.log(table.id);
-                    $("ol li").each(() => {
-                        if ($(this).html() === "AVAILABLE") {
-                            $(this).html("hi");
+
+                    //display in html back to user
+                    $(".reserved").each((index, value) => {
+                        if ($(value).html() === "AVAILABLE") {
+                            $(value).html(table.id);
+                            return false;
                         }
                     });
                 });
             });
     }
 
+    function getWaitlist() {
+        //grabs to current location (rather than hardcoding it)
+        var currentURL = window.location.origin
+
+        //ajax call -> query url with user selection (getting data from our api)
+        $.ajax({ url: currentURL + "/api/waitlist", method: "GET" })
+            .then((waitlistData) => {
+                //display waitlist
+                waitlistData.forEach((waiting, index) => {
+                    $(".waitlist").append(`<li class="list-group-item">${index + 1}. ${waiting.id}</li>`)
+                });
+            });
+    }
+
     getTables();
+    getWaitlist();
 
 </script>
 
